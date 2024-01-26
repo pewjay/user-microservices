@@ -1,0 +1,169 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.17 (Ubuntu 12.17-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.17 (Ubuntu 12.17-0ubuntu0.20.04.1)
+
+-- Started on 2024-01-15 23:45:00 +03
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 203 (class 1259 OID 16463)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    name character varying(15),
+    login character varying(20),
+    password character varying(20)
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16461)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2972 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- TOC entry 2836 (class 2604 OID 16469)
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- TOC entry 2966 (class 0 OID 16463)
+-- Dependencies: 203
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, name, login, password) FROM stdin;
+1	alex	king	123456
+2	lex	test	test
+3	eugene	dragon	121212
+4	andrew	knight	password
+5	pavel	hero	parol
+6	maxim	blossom	qwerty
+7	Елена	фиалка	123456
+8	mikola	elektrik	zaza
+9	mikola1	elektrik	zaza
+10	mikola2	elektrik	zaza
+11	mikola3	elektrik	zaza
+12	mikola4	elektrik	zaza
+13	test	test	zaza
+14	test1	test	zaza
+15	test3	test	zaza
+16	test3	test	zaza
+17	test4	test	zaza
+18	test5	test	zaza
+19	test6	test	zaza
+20	test7	test	zaza
+21	test8	test	zaza
+22	test9	test	zaza
+23	test10	test	zaza
+24	test11	test	zaza
+25	test11	test	zaza
+26	test11	test	zaza
+27	test11	test	zaza
+28	test12	test	zaza
+29	test12	test	zaza
+30	test13	test	zaza
+31	test14	test	zaza
+32	test14	test	zaza
+33	test14	test	zaza
+34	test14	test	zaza
+35	test14	test	zaza
+36	test14	test	zaza
+37	test14	test	zaza
+38	test15	test	zaza
+39	test15	test	zaza
+40	test15	test	zaza
+41	test15	test	zaza
+42	test16	test	zaza
+43	test16	test	zaza
+44	test16	test	zaza
+45	test16	test	zaza
+46	test16	test	zaza
+47	test16	test	zaza
+48	test16	test	zaza
+49	test16	test	zaza
+50	test16	test	zaza
+51	test16	test	zaza
+52	test16	test	zaza
+53	test16	test	zaza
+54	test16	test	zaza
+55	test16	test	zaza
+56	test16	test	zaza
+57	test16	test	zaza
+58	test16	test	zaza
+59	test16	test	zaza
+60	)))	test	zaza
+61	)))	test	zaza
+62	)))	test	zaza
+63	)))	test	zaza
+\.
+
+
+--
+-- TOC entry 2973 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 63, true);
+
+
+--
+-- TOC entry 2838 (class 2606 OID 16471)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2024-01-15 23:45:00 +03
+
+--
+-- PostgreSQL database dump complete
+--
+
