@@ -18,11 +18,6 @@ public class LogService {
     public void writeLog(UserLogMessage message) {
         log.info("Received message: " + message.getUser());
         UserLog userLogEntity = userLogMapper.destinationToSource(message);
-//        userLogEntity.setAction(message.getType());
-//        userLogEntity.setUserId(message.getUser().getId());
-//        userLogEntity.setLogin(message.getUser().getLogin());
-//        userLogEntity.setName(message.getUser().getName());
-//        userLogEntity.setPassword(message.getUser().getPassword());
         userLogRepository.save(userLogEntity);
     }
 }
