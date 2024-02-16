@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -27,9 +28,7 @@ public class UserService {
 
     public void addUser(UserRequest request) {
         User userEntity = userMapper.destinationToSource(request);
-//        userEntity.setName(request.name());
-//        userEntity.setLogin(request.login());
-//        userEntity.setPassword(request.password()); // почитай про MapStruct
+
 
         userRepository.save(userEntity);
 
@@ -37,20 +36,17 @@ public class UserService {
         userLogMessageEntity.setType("create");
         userLogMessageEntity.setUser(userEntity);
 
-//        messageProducer.sendMessage("my-topic", "User ID " + userEntity.getId() + " is created");
         messageProducer.sendMessage("my-topic", userLogMessageEntity);
 
         log.info("Message sent");
     }
 
-    public ResponseEntity<User> getUserById(long userId) {
-        return ResponseEntity.ok(
-                userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId))
-        );
+    public Optional<User> getUserById(long userId) {
+        return userRepository.findById(userId);
     }
 
     public ResponseEntity<List<User>> getUsers() {
-        return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
+        return ResponseEntity.ok(userRepository.findAll());
     }
 
 }

@@ -1,0 +1,23 @@
+server:
+    port: 8081
+spring:
+    data:
+        mongodb:
+            database: logsdb
+            host: 0.0.0.0
+            password: default
+            port: 27017
+            uri: mongodb://monga:default@localhost:27017/logsdb
+            username: monga
+    kafka:
+        bootstrap-servers: localhost:9092
+        consumer:
+            group-id: my-group-id
+            topic: my-topic
+            properties:
+                spring:
+                    deserializer:
+                        value:
+                            delegate:
+                                class: org.springframework.kafka.support.serializer.JsonDeserializer
+            value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
